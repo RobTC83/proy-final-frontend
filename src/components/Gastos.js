@@ -22,13 +22,6 @@ export default function Gastos() {
         setThirdButton(false)
     }
     
-    const onChange = ()=> {
-    
-    }
-    
-    const onSubmit = ()=>{
-    
-    }
 
 
 
@@ -47,9 +40,9 @@ export default function Gastos() {
                             {!thirdButton ? <p></p> : 
                                     <form  className="space-y-1">
                                         <label className="">  $   </label>
-                                        <input   className="h-8 w-8/12" name="expenseAmount" type="number" min="0" /><br/>
-                                        <input   name="expenseConcept" className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto a presupuestar"/><br/>
-                                        <input   name="expenseDate" type="date" className="h-8 w-9/12"/>
+                                        <input  className="h-8 w-8/12" name="expenseAmount" type="number" min="0" /><br/>
+                                        <input  name="expenseConcept" className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto a presupuestar"/><br/>
+                                        <input  name="expenseDate" type="date" className="h-8 w-9/12"/>
 
                                         <div className="flex justify-start mx-8 py-2 ">
                                             <button onClick={registrarGasto} type="submit" className="border-gray-700 bg-gray-300 text-gray-700 h-8 w-9/12">Registrar gasto</button>

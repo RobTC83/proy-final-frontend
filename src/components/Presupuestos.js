@@ -26,13 +26,9 @@ const registrarPresupuesto = ()=> {
 
 const {budgetAmount, budgetConcept} = budgetItem
 
-const onChange = ()=> {
 
-}
 
-const onSubmit = () => {
 
-}
 
     return (
         <div class="space-y-3 px-4 py-1 max-w-4xl">
@@ -47,10 +43,10 @@ const onSubmit = () => {
                             </div>
 
                             {!secondButtonState ? <p></p> : 
-                                    <form onSubmit={onSubmit} className="space-y-1">
+                                    <form  className="space-y-1">
                                         <label className="">  $   </label>
-                                        <input onChange={onChange} value={budgetAmount} className="h-8 w-8/12" name="budgetAmount" type="number" min="0" /><br/>
-                                        <input onChange={onChange} value={budgetConcept} name="budgetConcept" className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto a presupuestar"/><br/>
+                                        <input  className="h-8 w-8/12" name="budgetAmount" type="number" min="0" /><br/>
+                                        <input  name="budgetConcept" className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto a presupuestar"/><br/>
                                         <div className="flex justify-start mx-8 py-2 ">
                                             <button onClick={registrarPresupuesto} type="submit" className="border-gray-700 bg-gray-300 text-gray-700 h-8 w-9/12">Registrar presupuesto</button>
                                         </div>

@@ -18,22 +18,7 @@ export default function Ingresos(props) {
         setSumaIngresos(respuestaServidor)
       }
       getSumaIngresos()
-      //usuarioAutenticado() // Verifica si tengo token
-
-      // if(!autenticado){
-      //   props.history.push('/') // REDIRECTS CON REACT-ROUTER-DOM
-      // }
-
-
-    // useEffect(()=> {
-    //     const getLibros= async () => {
-    //         const respuestaServidor= await axios.get("http://localhost:3001/libros")
-    //         console.log(respuestaServidor)
-    //         setlistaLibros(respuestaServidor.data)
-    //         console.log(listaLibros)
-    //     }
-    //     getLibros()
-    // },[])
+     
 
 
     },[])
@@ -69,7 +54,6 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
 
   const onSubmit = e => {
     e.preventDefault()
-
 
     //validar que no haya campos vacíos
     if(
