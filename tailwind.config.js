@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'c-yellow':'#ffd500','c-peach':'#ffbd59'
+        'c-yellow':'#ffd500','c-peach':'#ffbd59','c-green':'#08A408','c-red':'#D31E0F','c-blue':'#0C4BC1'
       }
     },
   },

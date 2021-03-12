@@ -77,7 +77,7 @@ export default function Header(props) {
           <h1 class="text-3xl font-bold text-gray-900">
             Marzo 2021
           </h1>
-          <p>Te falta presupuestar $ 3,370</p>
+          <p className="font-bold text-c-green">¡Has logrado presupuestar todos tus ingresos!</p>
         </div>
 
        

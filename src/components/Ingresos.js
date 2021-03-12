@@ -83,14 +83,14 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
                     <div id="Contenedor ingresos" class="space-y-3 px-4 py-1 max-w-4xl">
                     <div class="flex justify-end mb-2 mt-2">
 
-                        <p className= "text-gray-900 hover:text-c-peach focus:outline-none" onClick={()=>estatusBoton()}>Agregar ingreso</p>
+                        <p className= "text-c-green hover:text-c-yellow focus:outline-none" onClick={()=>estatusBoton()}>Agregar ingreso</p>
                         </div>
                         <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
                             
                         
 
                             <div class="px-4 py-3 font-bold text-gray-900 bg-c-yellow hover:bg-c-peach">
-                                    <p>Tus ingresos  [Total: {sumaIngresos}]</p>
+                                    <p>Tus ingresos<span className="text-c-yellow">___________________</span><span className="text-c-green bg-white font-bold">Total: $ 6,430</span></p>
                                     
                             </div>
                             {!buttonState ? <p></p> : 
@@ -108,10 +108,10 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
                     { buttonState ? <p></p> :
                             <div class= "space-y-0">
                                 <div class="px-4 py-2">
-                                    Sueldo      [$ 8,100]
+                                <p>Sueldo quincenal<span className="text-white">_______________________</span><span className="text-c-green font-bold">$ 5,500</span></p>
                                 </div>
                                 <div class="px-4 py-2 ">
-                                    Comisiones   [$ 1,700]
+                                <p>Comisiones por ventas<span className="text-white">____________________</span><span className="text-c-green font-bold">$ 930</span></p>
                                 </div>
                             </div>}
 

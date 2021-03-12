@@ -27,7 +27,7 @@ export default function Graficas() {
         labels: ["Renta", "Despensa", "Transporte", "Ahorro"],
         datasets: [
           {
-            data: [1900, 1500, 750, 380],
+            data: [2380, 700, 250, 100],
             backgroundColor: chartColors,
             hoverBackgroundColor: chartColors
           }

@@ -29,12 +29,12 @@ export default function Gastos() {
     return (
         <div class="space-y-3 px-4 py-1 max-w-4xl">
                         <div class="flex justify-end mb-2 mt-2">
-                            <p className= "text-gray-900 hover:text-c-peach focus:outline-none" onClick={()=>estatusTercerBoton()}>Agregar gasto</p>    
+                            <p className= "text-c-red hover:text-c-yellow focus:outline-none" onClick={()=>estatusTercerBoton()}>Agregar gasto</p>    
                         </div>
             
                      <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
                         <div class="px-4 py-3 text-gray-900 font-bold bg-c-yellow hover:bg-c-peach">
-                                    Gastos  [Total: $ 3,430]
+                        <p>Tus gastos<span className="text-c-yellow bg-c-yellow">_________</span><span className="text-c-red bg-white font-bold">$ 3,430</span><span className="text-white bg-white">___</span><span className="bg-white">tienes</span><span className="text-white bg-white">___</span><span className="text-c-green bg-white font-bold">$ 3,000</span></p>
                             </div>
 
                             {!thirdButton ? <p></p> : 
@@ -52,16 +52,16 @@ export default function Gastos() {
                             {thirdButton ? <p></p> :
                             <div class= "space-y-0">
                                 <div class="px-4 py-2">
-                                    Renta          [$ 8,800]
+                                <p>Renta<span className="text-white">_______________</span><span className="text-c-red font-bold">$ 2,380</span><span className="text-white">___</span><span>tienes</span><span className="text-white">___</span><span className="text-c-green font-bold">$ 1,420</span></p>
                                 </div>
                                 <div class="px-4 py-2 ">
-                                    Despensa       [$ 700]
+                                <p>Despensa<span className="text-white">_____________</span><span className="text-c-red font-bold">$ 700</span><span className="text-white">___</span><span>tienes</span><span className="text-white">_____</span><span className="text-c-green font-bold">$ 800</span></p>
                                 </div>
                                 <div class="px-4 py-2 ">
-                                    Transporte     [$ 250]
+                                <p>Transporte<span className="text-white">____________</span><span className="text-c-red font-bold">$ 250</span><span className="text-white">____</span><span>tienes</span><span className="text-white">_____</span><span className="text-c-green font-bold">$ 500</span></p>
                                 </div>
                                 <div class="px-4 py-2 ">
-                                    Ahorro         [$ 100]
+                                <p>Ahorro<span className="text-white">_________________</span><span className="text-c-red font-bold">$ 100</span><span className="text-white">____</span><span>tienes</span><span className="text-white">____</span><span className="text-c-green font-bold">$ 280</span></p>
                                 </div>
                             </div>}
 

@@ -30,12 +30,12 @@ const registrarPresupuesto = ()=> {
         <div class="space-y-3 px-4 py-1 max-w-4xl">
             
             <div class="flex justify-end mb-2 mt-2">
-                <p className= "text-gray-900 hover:text-c-peach focus:outline-none" onClick={()=>estatusSegundoBoton()}>Agregar presupuesto</p>    
+                <p className= "text-c-blue hover:text-c-yellow focus:outline-none" onClick={()=>estatusSegundoBoton()}>Agregar presupuesto</p>    
             </div>
 
             <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
                         <div class="px-4 py-3 text-gray-900 font-bold bg-c-yellow hover:bg-c-peach">
-                                    Presupuestos  [Total: $ 6,430]
+                        <p>Tus Presupuestos<span className="text-c-yellow">______________</span><span className="text-c-blue bg-white font-bold">Total: $ 6,430</span></p>
                             </div>
 
                             {!secondButtonState ? <p></p> : 
@@ -51,16 +51,16 @@ const registrarPresupuesto = ()=> {
                             {secondButtonState ? <p></p> :
                             <div class= "space-y-0">
                                 <div class="px-4 py-2">
-                                    Renta          [$ 3,800]
+                                <p>Renta<span className="text-white">___________________________________</span><span className="text-c-blue font-bold">$ 3,800</span></p>
                                 </div>
                                 <div class="px-4 py-2 ">
-                                    Despensa       [$ 1,500]
+                                <p>Despensa<span className="text-white">_______________________________</span><span className="text-c-blue font-bold">$ 1,500</span></p>
                                 </div>
                                 <div class="px-4 py-2 ">
-                                    Transporte     [$ 750]
+                                <p>Transporte<span className="text-white">_________________________________</span><span className="text-c-blue font-bold">$ 750</span></p>
                                 </div>
                                 <div class="px-4 py-2 ">
-                                    Ahorro         [$ 380]
+                                <p>Ahorro<span className="text-white">_____________________________________</span><span className="text-c-blue font-bold">$ 380</span></p>
                                 </div>
                             </div>}
 
