@@ -35,7 +35,7 @@ const registrarPresupuesto = ()=> {
 
             <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
                         <div class="px-4 py-3 text-gray-900 font-bold bg-c-yellow hover:bg-c-peach">
-                        <p>Tus Presupuestos<span className="text-c-yellow">______________</span><span className="text-c-blue bg-white font-bold">Total: $ 6,430</span></p>
+                        <p>Tus Presupuestos<span className="text-c-yellow hover:text-c-peach">______________</span><span className="text-c-blue bg-white font-bold">Total: $ 6,430</span></p>
                             </div>
 
                             {!secondButtonState ? <p></p> : 
