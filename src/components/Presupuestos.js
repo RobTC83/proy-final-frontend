@@ -6,14 +6,11 @@ export default function Presupuestos() {
     const [secondButtonState, setSecondButtonState] = useState(false)
 
 
-const [budgetItem, setBudgetItem] = useState({
-    budgetAmount: null,
-    budgetConcept: null
-})
+
 
 
 const estatusSegundoBoton = ()=> {
-    if(secondButtonState == false){
+    if(secondButtonState === false){
         setSecondButtonState(true)
     }
 
@@ -24,7 +21,6 @@ const registrarPresupuesto = ()=> {
     setSecondButtonState(false)
 }
 
-const {budgetAmount, budgetConcept} = budgetItem
 
 
 
