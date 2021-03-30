@@ -11,7 +11,6 @@ import './App.css';
 import EditarPerfil from './rutas/EditarPerfil'
 import IniciarSesion from './rutas/IniciarSesion'
 import Registro from './rutas/Registro'
-import RegistroExitoso from './rutas/RegistroExitoso'
 import Tablero from './rutas/Tablero'
 
 import Header from './components/Header'
@@ -27,7 +26,6 @@ function App(props) {
           <Switch>
               <Route exact path="/" component={IniciarSesion}/>
               <Route exact path="/registro" component={Registro}/>
-              <Route exact path="/registro-exitoso" component={RegistroExitoso}/>
               <Route path={"/"} render={() => (
                   <>
                     <Header />

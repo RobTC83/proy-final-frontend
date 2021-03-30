@@ -1,27 +1,14 @@
-import axios from 'axios';
 import React, {useContext, useState, useEffect} from 'react'
 
 import AuthContext from '../context/auth/AuthContext'
 
 export default function Ingresos(props) {
 
-  const authContext = useContext(AuthContext)
-  const {registrarIngresos} = authContext;
+  const {mostrarIngresos,totalIngresos} = useContext(AuthContext)
 
-  const [sumaIngresos, setSumaIngresos] = useState()
-
-    useEffect(() => {
-
-      const getSumaIngresos = async() =>{
-        const respuestaServidor = await axios.get("http://localhost:4000/ingresos/total")
-        console.log ("sumaIngresos:",respuestaServidor)
-        setSumaIngresos(respuestaServidor)
-      }
-      getSumaIngresos()
-     
-
-
-    },[])
+  useEffect(()=>{
+      mostrarIngresos()
+  },[])
 
  const [buttonState, setButtonState] = useState(false)
  
@@ -67,11 +54,11 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
         return
     }
 
-    registrarIngresos({
-      incomeAmount,
-      incomeSource,
-      incomeDate
-    })
+    // registrarIngresos({
+    //   incomeAmount,
+    //   incomeSource,
+    //   incomeDate
+    // })
 
     setButtonState(false)
 
@@ -90,7 +77,7 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
                         
 
                             <div class="px-4 py-3 font-bold text-gray-900 bg-c-yellow hover:bg-c-peach">
-                                    <p>Tus ingresos<span className="text-c-yellow hover:text-c-peach">___________________</span><span className="text-c-green bg-white font-bold">Total: $ 6,430</span></p>
+                                    <p>Tus ingresos<span className="text-c-yellow hover:text-c-peach">___________________</span><span className="text-c-green bg-white font-bold">Total: ${totalIngresos}</span></p>
                                     
                             </div>
                             {!buttonState ? <p></p> : 
@@ -101,7 +88,7 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
                     <input onChange={onChange} value={incomeSource} name="incomeSource" className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto: sueldo,ventas, etc"/><br/>
                     <input onChange={onChange} value={incomeDate} name="incomeDate" type="date" className="h-8 w-9/12"/>
                     <div className="flex justify-start mx-8 py-2 ">
-                        <button onClick={registrarIngresos} type="submit" className="border-gray-700 bg-gray-300 text-gray-700 h-8 w-9/12">Registra tu ingreso</button>
+                        <button /*onClick={registrarIngresos} */type="submit" className="border-gray-700 bg-gray-300 text-gray-700 h-8 w-9/12">Registra tu ingreso</button>
                     </div>
                 </form>
     }

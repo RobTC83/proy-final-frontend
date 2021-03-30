@@ -7,11 +7,12 @@ import {
     LOGIN_EXITOSO,
     LOGIN_ERROR,
     CERRAR_SESION,
-    REGISTRAR_INGRESOS,
+    OBTENER_INGRESOS,
 
 } from '../../types/index'
 
 export default (state, action) => {
+
     switch(action.type){
 
         case LOGIN_EXITOSO:
@@ -44,11 +45,10 @@ export default (state, action) => {
                     autenticado: true,
                     usuario: action.payload
                 }
-            
-            case REGISTRAR_INGRESOS:
+            case OBTENER_INGRESOS:
                 return {
                     ...state,
-                    datosUsuario: action.payload
+                    totalIngresos: action.payload 
                 }
             
             default:

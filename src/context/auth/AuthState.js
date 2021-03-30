@@ -13,9 +13,9 @@ import {
     LOGIN_EXITOSO,
     LOGIN_ERROR,
     CERRAR_SESION,
-    REGISTRAR_INGRESOS,
-    ERROR_REGISTRAR_INGRESOS
+    OBTENER_INGRESOS,
 } from '../../types/index'
+
 
 const AuthState = props => {
 
@@ -23,8 +23,8 @@ const AuthState = props => {
     const initialState = {
         token: localStorage.getItem('token'),
         autenticado: null,
-        usuario: null, // info del usuario
-        datosUsuario: null
+        usuario: [], // info del usuario
+        totalIngresos: null
     }
 
     const [state, dispatch] = useReducer(AuthReducer,initialState)
@@ -103,28 +103,6 @@ const AuthState = props => {
         }
     }
 
-    // Actualizar los ingresos cuando se ingresen
-
-    const registrarIngresos = async (datos) => {
-        try {
-            // const respuestaApi = await clienteAxios.get('/usuarios',datos)
-            // console.log("Usuario con ingresos:",respuestaApi)
-            
-            const respuesta = await clienteAxios.post('/ingresos')
-            console.log("Ingreso registrado:",respuesta)
-
-            dispatch({
-                type: REGISTRAR_INGRESOS,
-                payload: respuesta.data.usuario
-            })
-        } catch(error) {
-            console.log(error)
-            dispatch({
-                type: ERROR_REGISTRAR_INGRESOS
-            })
-            
-        }
-    }
     // Cierra la sesión del usuario
     const cerrarSesion = () => {
         dispatch({
@@ -132,17 +110,29 @@ const AuthState = props => {
         })
     }
 
+    // Traer los datos de los ingresos del usuario
+
+    const mostrarIngresos = async() => {
+        const resp = await clienteAxios.get('/ingresos/total')
+        dispatch({
+            type: OBTENER_INGRESOS,
+            payload: resp.data.sumaIngresos
+        })
+        
+    }
+
+
     return (
         <AuthContext.Provider value={{
             token: state.token,
             autenticado: state.autenticado,
             usuario: state.usuario,
-            datosUsuario: state.datosUsuario,
+            totalIngresos: state.totalIngresos,
             registrarUsuario,
             iniciarSesion,
             usuarioAutenticado,
             cerrarSesion,
-            registrarIngresos
+            mostrarIngresos
         }}>
             {props.children}
             </AuthContext.Provider>
