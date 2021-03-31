@@ -4,7 +4,7 @@ import AuthContext from '../context/auth/AuthContext'
 
 export default function Ingresos(props) {
 
-  const {mostrarIngresos,totalIngresos} = useContext(AuthContext)
+  const {mostrarIngresos,totalIngresos,usuario} = useContext(AuthContext)
 
   useEffect(()=>{
       mostrarIngresos()
@@ -77,7 +77,8 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
                         
 
                             <div class="px-4 py-3 font-bold text-gray-900 bg-c-yellow hover:bg-c-peach">
-                                    <p>Tus ingresos<span className="text-c-yellow hover:text-c-peach">___________________</span><span className="text-c-green bg-white font-bold">Total: ${totalIngresos}</span></p>
+                                    <p>Tus ingresos</p>
+                                    <span className="text-c-yellow hover:text-c-peach">___________________</span><span className="text-c-green bg-white font-bold">Total: ${totalIngresos}</span>
                                     
                             </div>
                             {!buttonState ? <p></p> : 
@@ -95,11 +96,19 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
                     { buttonState ? <p></p> :
                             <div class= "space-y-0">
                                 <div class="px-4 py-2">
-                                <p>Sueldo quincenal<span className="text-white">_______________________</span><span className="text-c-green font-bold">$ 5,500</span></p>
+                                {!usuario.incomeInfo ? (<p>Loading</p>) :
+
+                                usuario.incomeInfo.map((elem,i)=>{
+                                return(
+                                  <div className="px-2 py-1 flex justify-between">
+                                    <span>{elem.incomeSource}</span> <span className="text-c-green font-bold">{`$ ${elem.incomeAmount}`}</span> 
+                                  </div>  )
+                                  })  
+                                }
+                               
                                 </div>
-                                <div class="px-4 py-2 ">
-                                <p>Comisiones por ventas<span className="text-white">____________________</span><span className="text-c-green font-bold">$ 930</span></p>
-                                </div>
+
+                                
                             </div>}
 
                         </div>
