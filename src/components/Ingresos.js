@@ -8,7 +8,7 @@ export default function Ingresos(props) {
 
   useEffect(()=>{
       mostrarIngresos()
-  },[])
+  },[usuario])
 
  const [buttonState, setButtonState] = useState(false)
  
@@ -26,11 +26,10 @@ export default function Ingresos(props) {
     incomeDate: null
 })
 
-// Extraer del formulario 
+// Desestructurar la info del formulario 
 const {incomeAmount, incomeSource, incomeDate} = incomeItem
   
   const onChange = e => {
-    console.log(incomeItem)
 
     setIncomeItem({
       ...incomeItem,
@@ -56,8 +55,6 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
     }
 
     // pasarlo al action de la función
-
-
      crearIngreso({
        incomeAmount,
        incomeSource,

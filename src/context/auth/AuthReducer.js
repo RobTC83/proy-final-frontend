@@ -65,6 +65,12 @@ export default (state, action) => {
                     ...state,
                     usuario: action.payload
                 }
+            
+            case CREAR_PRESUPUESTO:
+                return {
+                    ...state,
+                    usuario: action.payload
+                }
 
             default:
                 return state

@@ -15,7 +15,8 @@ import {
     CERRAR_SESION,
     OBTENER_INGRESOS,
     OBTENER_PRESUPUESTOS,
-    CREAR_INGRESO
+    CREAR_INGRESO,
+    CREAR_PRESUPUESTO
 } from '../../types/index'
 
 
@@ -147,12 +148,22 @@ const AuthState = props => {
     const crearIngreso = async(ingreso) => {
         const resp = await clienteAxios.post('/ingresos',ingreso)
 
-        console.log("crear ingreso", resp)
          dispatch({
             type: CREAR_INGRESO,
             payload: resp.data
 
          })
+    }
+
+    // Crear un nuevo presupuesto
+
+    const crearPresupuesto = async(presupuesto) => {
+        const resp = await clienteAxios.post('/presupuestos', presupuesto)
+
+        dispatch({
+            type:CREAR_PRESUPUESTO,
+            payload: resp.data
+        })
     }
 
     return (
@@ -171,6 +182,7 @@ const AuthState = props => {
             mostrarPresupuestos,
             mostrarGastos,
             crearIngreso,
+            crearPresupuesto
 
         }}>
             {props.children}

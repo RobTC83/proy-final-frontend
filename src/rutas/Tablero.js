@@ -1,6 +1,5 @@
 import React  from 'react'
 import Ingresos from '../components/Ingresos'
-import MostrarIngresos from '../components/MostrarIngresos'
 
 import Graficas from '../components/Graficas'
 import Gastos from '../components/Gastos'
@@ -17,7 +16,6 @@ export default function Tablero() {
                 <div className="filas">
                   <Ingresos/>
                   <Presupuestos/>
-                  <MostrarIngresos/>
                 </div>
               </div>
               <div className="columna-tablero">

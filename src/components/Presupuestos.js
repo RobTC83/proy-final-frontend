@@ -4,27 +4,63 @@ import AuthContext from '../context/auth/AuthContext'
 
 export default function Presupuestos(props) {
 
-    const {mostrarPresupuestos, totalPresupuestos, usuario} = useContext(AuthContext)
+    const {mostrarPresupuestos, totalPresupuestos, usuario, crearPresupuesto} = useContext(AuthContext)
 
     useEffect(()=>{
         mostrarPresupuestos()
-    },[])
+    },[usuario])
 
+// State para mostrar/ocultar el formulario de agregar presupuesto
     const [secondButtonState, setSecondButtonState] = useState(false)
 
-
-
-
-
+// Función para mostrar/ocultar el formulario de agregar presupuesto
 const estatusSegundoBoton = ()=> {
     if(secondButtonState === false){
         setSecondButtonState(true)
     }
-
 }
 
+// State inicial de los campos del formulario
 
-const registrarPresupuesto = ()=> {
+const [budgetItem, setBudgetItem] = useState({
+    budgetAmount: null,
+    budgetConcept: null
+})
+
+// Desestructurar la info del formulario 
+
+const {budgetAmount, budgetConcept} = budgetItem
+
+const onChange = (e) => {
+
+    setBudgetItem({
+        ...budgetItem,
+        [e.target.name]: e.target.value
+    })
+}
+
+// Una vez que se llenen los campos
+
+const onSubmit = (e)=> {
+    e.preventDefault()
+
+//validar que no haya campos vacíos
+if(
+    budgetAmount === "" ||
+    budgetConcept === ""
+    ){
+
+      console.log("Todos los campos son obligatorios")
+      return
+  }
+
+  // pasarlo al action de la función
+  crearPresupuesto({
+    budgetAmount,
+    budgetConcept,
+  })
+
+
     setSecondButtonState(false)
 }
 
@@ -51,10 +87,12 @@ const registrarPresupuesto = ()=> {
                             {!secondButtonState ? <p></p> : 
                                     <form  className="space-y-1">
                                         <label className="">  $   </label>
-                                        <input  className="h-8 w-8/12" name="budgetAmount" type="number" min="0" /><br/>
-                                        <input  name="budgetConcept" className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto a presupuestar"/><br/>
+                                        <input  className="h-8 w-8/12" name="budgetAmount"
+                                        onChange={onChange} value={budgetAmount} type="number" min="0" /><br/>
+                                        <input  name="budgetConcept"
+                                        onChange={onChange} value={budgetConcept} className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto a presupuestar"/><br/>
                                         <div className="flex justify-start mx-8 py-2 ">
-                                            <button onClick={registrarPresupuesto} type="submit" className="border-gray-700 bg-gray-300 text-gray-700 h-8 w-9/12">Registrar presupuesto</button>
+                                            <button onClick={onSubmit} type="submit" className="border-gray-700 bg-gray-300 text-gray-700 h-8 w-9/12">Registrar presupuesto</button>
                                         </div>
                                     </form>
                         }
