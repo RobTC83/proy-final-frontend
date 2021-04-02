@@ -4,7 +4,7 @@ import AuthContext from '../context/auth/AuthContext'
 
 export default function Ingresos(props) {
 
-  const {mostrarIngresos,totalIngresos,usuario} = useContext(AuthContext)
+  const {mostrarIngresos,totalIngresos,usuario,crearIngreso} = useContext(AuthContext)
 
   useEffect(()=>{
       mostrarIngresos()
@@ -18,15 +18,16 @@ export default function Ingresos(props) {
   }
 }
 
+// State inicial de los campos del formulario
+
  const [incomeItem, setIncomeItem] = useState({
     incomeAmount: null,
     incomeSource: null,
     incomeDate: null
 })
 
+// Extraer del formulario 
 const {incomeAmount, incomeSource, incomeDate} = incomeItem
-
-
   
   const onChange = e => {
     console.log(incomeItem)
@@ -54,11 +55,14 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
         return
     }
 
-    // registrarIngresos({
-    //   incomeAmount,
-    //   incomeSource,
-    //   incomeDate
-    // })
+    // pasarlo al action de la función
+
+
+     crearIngreso({
+       incomeAmount,
+       incomeSource,
+       incomeDate
+     })
 
     setButtonState(false)
 
@@ -86,7 +90,7 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
             
                 <form onSubmit={onSubmit} className="space-y-1">
                     <label className="">  $   </label>
-                    <input onChange={onChange} value={incomeAmount} className="h-8 w-8/12" name="incomeAmount" type="number" min="0" /><br/>
+                    <input onChange={onChange} value={incomeAmount} className="h-8 w-8/12" name="incomeAmount" type="number" min="0" placeholder="Monto" /><br/>
                     <input onChange={onChange} value={incomeSource} name="incomeSource" className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto: sueldo,ventas, etc"/><br/>
                     <input onChange={onChange} value={incomeDate} name="incomeDate" type="date" className="h-8 w-9/12"/>
                     <div className="flex justify-start mx-8 py-2 ">

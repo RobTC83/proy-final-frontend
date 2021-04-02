@@ -14,7 +14,8 @@ import {
     LOGIN_ERROR,
     CERRAR_SESION,
     OBTENER_INGRESOS,
-    OBTENER_PRESUPUESTOS
+    OBTENER_PRESUPUESTOS,
+    CREAR_INGRESO
 } from '../../types/index'
 
 
@@ -26,14 +27,15 @@ const AuthState = props => {
         autenticado: null,
         usuario: [], // info del usuario
         totalIngresos: null,
-        totalPresupuestos: null
+        totalPresupuestos: null,
+        totalGastos:null
     }
 
     const [state, dispatch] = useReducer(AuthReducer,initialState)
 
     // Registra un usuario
 
-    const registrarUsuario = async datos => {
+    const registrarUsuario = async (datos) => {
         try{
             const respuesta = await clienteAxios.post('/usuarios',datos)
 
@@ -134,6 +136,21 @@ const AuthState = props => {
         
     }
 
+    // Mostrar el total de gastos del usuario
+
+    const mostrarGastos = async() => {
+        const resp = await clienteAxios.get('/')
+    }
+
+    // Crear un nuevo ingreso
+
+    const crearIngreso = async(ingreso) => {
+        const resp = await clienteAxios.post('/ingresos',ingreso)
+
+        dispatch({
+            type: CREAR_INGRESO,
+        })
+    }
 
     return (
         <AuthContext.Provider value={{
@@ -142,12 +159,16 @@ const AuthState = props => {
             usuario: state.usuario,
             totalIngresos: state.totalIngresos,
             totalPresupuestos: state.totalPresupuestos,
+            totalGastos:state.totalGastos,
             registrarUsuario,
             iniciarSesion,
             usuarioAutenticado,
             cerrarSesion,
             mostrarIngresos,
-            mostrarPresupuestos
+            mostrarPresupuestos,
+            mostrarGastos,
+            crearIngreso,
+
         }}>
             {props.children}
             </AuthContext.Provider>
