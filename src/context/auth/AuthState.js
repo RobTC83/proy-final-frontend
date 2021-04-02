@@ -147,9 +147,12 @@ const AuthState = props => {
     const crearIngreso = async(ingreso) => {
         const resp = await clienteAxios.post('/ingresos',ingreso)
 
-        dispatch({
+        console.log("crear ingreso", resp)
+         dispatch({
             type: CREAR_INGRESO,
-        })
+            payload: resp.data
+
+         })
     }
 
     return (

@@ -8,7 +8,9 @@ import {
     LOGIN_ERROR,
     CERRAR_SESION,
     OBTENER_INGRESOS,
-    OBTENER_PRESUPUESTOS
+    OBTENER_PRESUPUESTOS,
+    CREAR_INGRESO,
+    CREAR_PRESUPUESTO
 
 } from '../../types/index'
 
@@ -57,6 +59,13 @@ export default (state, action) => {
                     ...state,
                     totalPresupuestos: action.payload
                 }
+            
+            case CREAR_INGRESO:
+                return {
+                    ...state,
+                    usuario: action.payload
+                }
+
             default:
                 return state
     }
