@@ -1,7 +1,14 @@
-import React,{useState} from 'react'
+import React,{useState, useContext, useEffect} from 'react'
 
-export default function Presupuestos() {
+import AuthContext from '../context/auth/AuthContext'
 
+export default function Presupuestos(props) {
+
+    const {mostrarPresupuestos, totalPresupuestos, usuario} = useContext(AuthContext)
+
+    useEffect(()=>{
+        mostrarPresupuestos()
+    },[])
 
     const [secondButtonState, setSecondButtonState] = useState(false)
 
@@ -35,8 +42,11 @@ const registrarPresupuesto = ()=> {
 
             <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
                         <div class="px-4 py-3 text-gray-900 font-bold bg-c-yellow hover:bg-c-peach">
-                        <p>Tus Presupuestos<span className="text-c-yellow hover:text-c-peach">______________</span><span className="text-c-blue bg-white font-bold">Total: $ 6,430</span></p>
+                            <div className="flex justify-between">
+                                <p>Tus Presupuestos</p> 
+                                <span className="text-c-blue bg-white font-bold">Total: ${totalPresupuestos}</span>
                             </div>
+                        </div>
 
                             {!secondButtonState ? <p></p> : 
                                     <form  className="space-y-1">
@@ -49,19 +59,21 @@ const registrarPresupuesto = ()=> {
                                     </form>
                         }
                             {secondButtonState ? <p></p> :
-                            <div class= "space-y-0">
+                                <div class= "space-y-0">
                                 <div class="px-4 py-2">
-                                <p>Renta<span className="text-white">___________________________________</span><span className="text-c-blue font-bold">$ 3,800</span></p>
+                                {!usuario.budgetInfo ? (<p>Loading</p>) :
+
+                                usuario.budgetInfo.map((elem,i)=>{
+                                return(
+                                  <div className="px-2 py-1 flex justify-between">
+                                    <span>{elem.budgetConcept}</span> <span className="text-c-blue font-bold">{`$ ${elem.budgetAmount}`}</span> 
+                                  </div>  )
+                                  })  
+                                }
+                               
                                 </div>
-                                <div class="px-4 py-2 ">
-                                <p>Despensa<span className="text-white">_______________________________</span><span className="text-c-blue font-bold">$ 1,500</span></p>
-                                </div>
-                                <div class="px-4 py-2 ">
-                                <p>Transporte<span className="text-white">_________________________________</span><span className="text-c-blue font-bold">$ 750</span></p>
-                                </div>
-                                <div class="px-4 py-2 ">
-                                <p>Ahorro<span className="text-white">_____________________________________</span><span className="text-c-blue font-bold">$ 380</span></p>
-                                </div>
+
+                                
                             </div>}
 
                         </div>

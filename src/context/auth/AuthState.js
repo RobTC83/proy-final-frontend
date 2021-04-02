@@ -14,6 +14,7 @@ import {
     LOGIN_ERROR,
     CERRAR_SESION,
     OBTENER_INGRESOS,
+    OBTENER_PRESUPUESTOS
 } from '../../types/index'
 
 
@@ -24,7 +25,8 @@ const AuthState = props => {
         token: localStorage.getItem('token'),
         autenticado: null,
         usuario: [], // info del usuario
-        totalIngresos: null
+        totalIngresos: null,
+        totalPresupuestos: null
     }
 
     const [state, dispatch] = useReducer(AuthReducer,initialState)
@@ -110,13 +112,24 @@ const AuthState = props => {
         })
     }
 
-    // Traer los datos de los ingresos del usuario
+    // Traer el total de los ingresos del usuario
 
     const mostrarIngresos = async() => {
         const resp = await clienteAxios.get('/ingresos/total')
         dispatch({
             type: OBTENER_INGRESOS,
             payload: resp.data.sumaIngresos
+        })
+        
+    }
+
+    // Traer el total de los presupuestos del usuario
+
+    const mostrarPresupuestos = async() => {
+        const resp = await clienteAxios.get('/presupuestos/total')
+        dispatch({
+            type: OBTENER_PRESUPUESTOS,
+            payload:resp.data.sumaPresupuestos
         })
         
     }
@@ -128,11 +141,13 @@ const AuthState = props => {
             autenticado: state.autenticado,
             usuario: state.usuario,
             totalIngresos: state.totalIngresos,
+            totalPresupuestos: state.totalPresupuestos,
             registrarUsuario,
             iniciarSesion,
             usuarioAutenticado,
             cerrarSesion,
-            mostrarIngresos
+            mostrarIngresos,
+            mostrarPresupuestos
         }}>
             {props.children}
             </AuthContext.Provider>

@@ -77,9 +77,10 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
                         
 
                             <div class="px-4 py-3 font-bold text-gray-900 bg-c-yellow hover:bg-c-peach">
-                                    <p>Tus ingresos</p>
-                                    <span className="text-c-yellow hover:text-c-peach">___________________</span><span className="text-c-green bg-white font-bold">Total: ${totalIngresos}</span>
-                                    
+                                  <div className="flex justify-between">
+                                    <p className="text-black ">Tus ingresos</p>
+                                    <span className="text-c-green bg-white font-bold">Total: ${totalIngresos}</span>
+                                  </div> 
                             </div>
                             {!buttonState ? <p></p> : 
             
