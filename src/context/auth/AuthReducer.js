@@ -10,7 +10,9 @@ import {
     OBTENER_INGRESOS,
     OBTENER_PRESUPUESTOS,
     CREAR_INGRESO,
-    CREAR_PRESUPUESTO
+    CREAR_PRESUPUESTO,
+    MOSTRAR_INGRESOS_USUARIO,
+    BORRAR_INGRESO
 
 } from '../../types/index'
 
@@ -72,6 +74,16 @@ export default (state, action) => {
                     usuario: action.payload
                 }
 
+            case MOSTRAR_INGRESOS_USUARIO:
+                return {
+                    ...state,
+                    ingresosUsuario: action.payload
+                }
+            
+             case BORRAR_INGRESO:
+                return {
+                    ingresosUsuario: action.payload 
+                 }
             default:
                 return state
     }

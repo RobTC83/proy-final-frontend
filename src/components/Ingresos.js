@@ -4,11 +4,13 @@ import AuthContext from '../context/auth/AuthContext'
 
 export default function Ingresos(props) {
 
-  const {mostrarIngresos,totalIngresos,usuario,crearIngreso} = useContext(AuthContext)
+  const {mostrarIngresos,totalIngresos,usuario,crearIngreso,ingresosUsuario,mostrarIngresosUsuario,borrarIngreso} = useContext(AuthContext)
 
   useEffect(()=>{
       mostrarIngresos()
-  },[usuario])
+      mostrarIngresosUsuario()
+      
+  },[usuario,ingresosUsuario])
 
  const [buttonState, setButtonState] = useState(false)
  
@@ -61,7 +63,23 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
        incomeDate
      })
 
+     setIncomeItem(
+       {
+        incomeAmount: "",
+        incomeSource: "",
+        incomeDate: ""
+       }
+     )
     setButtonState(false)
+
+   
+  
+  }
+   //Eliminar ingreso
+
+   const eliminarIngreso = (el)=>{
+    borrarIngreso(el) 
+    console.log(el)
 
   }
     return (
@@ -91,20 +109,24 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
                     <input onChange={onChange} value={incomeSource} name="incomeSource" className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto: sueldo,ventas, etc"/><br/>
                     <input onChange={onChange} value={incomeDate} name="incomeDate" type="date" className="h-8 w-9/12"/>
                     <div className="flex justify-start mx-8 py-2 ">
-                        <button /*onClick={registrarIngresos} */type="submit" className="border-gray-700 bg-gray-300 text-gray-700 h-8 w-9/12">Registra tu ingreso</button>
+                        <button type="submit" className="border-gray-700 bg-gray-300 text-gray-700 h-8 w-9/12">Registra tu ingreso</button>
                     </div>
                 </form>
     }
                     { buttonState ? <p></p> :
                             <div class= "space-y-0">
                                 <div class="px-4 py-2">
-                                {!usuario.incomeInfo ? (<p>Loading</p>) :
+                                {!ingresosUsuario ? (<p>Loading</p>) :
 
-                                usuario.incomeInfo.map((elem,i)=>{
+                                ingresosUsuario.map((elem,i)=>{
                                 return(
-                                  <div className="px-2 py-1 flex justify-between">
-                                    <span>{elem.incomeSource}</span> <span className="text-c-green font-bold">{`$ ${elem.incomeAmount}`}</span> 
-                                  </div>  )
+                                  <>
+                                    <div className="px-2 py-1 flex justify-between">
+                                      <span>{elem.incomeSource}</span> <span className="text-c-green font-bold">{`$ ${elem.incomeAmount}`}</span>
+                                    </div>
+                                  <button onClick={()=>eliminarIngreso(elem._id)}>Eliminar</button>
+                                  </>
+                                    )
                                   })  
                                 }
                                

@@ -16,7 +16,9 @@ import {
     OBTENER_INGRESOS,
     OBTENER_PRESUPUESTOS,
     CREAR_INGRESO,
-    CREAR_PRESUPUESTO
+    CREAR_PRESUPUESTO,
+    MOSTRAR_INGRESOS_USUARIO,
+    BORRAR_INGRESO
 } from '../../types/index'
 
 
@@ -29,7 +31,8 @@ const AuthState = props => {
         usuario: [], // info del usuario
         totalIngresos: null,
         totalPresupuestos: null,
-        totalGastos:null
+        totalGastos:null,
+        ingresosUsuario:null
     }
 
     const [state, dispatch] = useReducer(AuthReducer,initialState)
@@ -119,11 +122,23 @@ const AuthState = props => {
 
     const mostrarIngresos = async() => {
         const resp = await clienteAxios.get('/ingresos/total')
+        console.log("sumaIngresos", resp.data)
         dispatch({
             type: OBTENER_INGRESOS,
             payload: resp.data.sumaIngresos
         })
         
+    }
+
+    // Traer cada uno de los ingresos del usuario
+
+    const mostrarIngresosUsuario = async() => {
+        const resp = await clienteAxios.get('/ingresos')
+        console.log("ingresosUsuario",resp.data)
+         dispatch({
+             type: MOSTRAR_INGRESOS_USUARIO,
+             payload: resp.data.ingresos
+         })
     }
 
     // Traer el total de los presupuestos del usuario
@@ -155,6 +170,18 @@ const AuthState = props => {
          })
     }
 
+
+    // Eliminar un ingreso
+
+        const borrarIngreso = async(ing) => {
+            const res = await clienteAxios.delete(`/ingresos/${ing}`)
+            console.log("eliminarIngreso",res)
+            dispatch({
+                type: BORRAR_INGRESO,
+                payload: state.ingresosUsuario
+            })
+        }
+
     // Crear un nuevo presupuesto
 
     const crearPresupuesto = async(presupuesto) => {
@@ -174,6 +201,7 @@ const AuthState = props => {
             totalIngresos: state.totalIngresos,
             totalPresupuestos: state.totalPresupuestos,
             totalGastos:state.totalGastos,
+            ingresosUsuario: state.ingresosUsuario,
             registrarUsuario,
             iniciarSesion,
             usuarioAutenticado,
@@ -182,7 +210,9 @@ const AuthState = props => {
             mostrarPresupuestos,
             mostrarGastos,
             crearIngreso,
-            crearPresupuesto
+            crearPresupuesto,
+            mostrarIngresosUsuario,
+            borrarIngreso
 
         }}>
             {props.children}

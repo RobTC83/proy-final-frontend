@@ -99,7 +99,7 @@ if(
                             {secondButtonState ? <p></p> :
                                 <div class= "space-y-0">
                                 <div class="px-4 py-2">
-                                {!usuario.budgetInfo ? (<p>Loading</p>) :
+                                {/* {!usuario.budgetInfo ? (<p>Loading</p>) :
 
                                 usuario.budgetInfo.map((elem,i)=>{
                                 return(
@@ -107,7 +107,7 @@ if(
                                     <span>{elem.budgetConcept}</span> <span className="text-c-blue font-bold">{`$ ${elem.budgetAmount}`}</span> 
                                   </div>  )
                                   })  
-                                }
+                                } */}
                                
                                 </div>
 
