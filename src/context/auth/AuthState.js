@@ -18,7 +18,8 @@ import {
     CREAR_INGRESO,
     CREAR_PRESUPUESTO,
     MOSTRAR_INGRESOS_USUARIO,
-    BORRAR_INGRESO
+    BORRAR_INGRESO,
+    EDITAR_INGRESO
 } from '../../types/index'
 
 
@@ -122,7 +123,6 @@ const AuthState = props => {
 
     const mostrarIngresos = async() => {
         const resp = await clienteAxios.get('/ingresos/total')
-        console.log("sumaIngresos", resp.data)
         dispatch({
             type: OBTENER_INGRESOS,
             payload: resp.data.sumaIngresos
@@ -134,7 +134,6 @@ const AuthState = props => {
 
     const mostrarIngresosUsuario = async() => {
         const resp = await clienteAxios.get('/ingresos')
-        console.log("ingresosUsuario",resp.data)
          dispatch({
              type: MOSTRAR_INGRESOS_USUARIO,
              payload: resp.data.ingresos
@@ -182,6 +181,17 @@ const AuthState = props => {
             })
         }
 
+    // Editar un ingreso
+
+        // const editarIngreso = async(id,e) => {
+
+        //     const res = await clienteAxios.post(`/ingresos/editar/${id}`,e)
+        //     console.log("editar ingreso",res)
+        //      dispatch({
+        //          type: EDITAR_INGRESO,
+        //          payload: state.ingresosUsuario
+        //      })
+        // }
     // Crear un nuevo presupuesto
 
     const crearPresupuesto = async(presupuesto) => {
@@ -212,7 +222,8 @@ const AuthState = props => {
             crearIngreso,
             crearPresupuesto,
             mostrarIngresosUsuario,
-            borrarIngreso
+            borrarIngreso,
+            editarIngreso
 
         }}>
             {props.children}

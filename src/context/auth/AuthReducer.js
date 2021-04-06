@@ -12,7 +12,8 @@ import {
     CREAR_INGRESO,
     CREAR_PRESUPUESTO,
     MOSTRAR_INGRESOS_USUARIO,
-    BORRAR_INGRESO
+    BORRAR_INGRESO,
+    EDITAR_INGRESO
 
 } from '../../types/index'
 
@@ -84,6 +85,10 @@ export default (state, action) => {
                 return {
                     ingresosUsuario: action.payload 
                  }
+            case EDITAR_INGRESO:
+                return {
+                    ingresosUsuario: action.payload
+                }
             default:
                 return state
     }
