@@ -17,6 +17,7 @@ import {
     TOTAL_PRESUPUESTOS,
     CREAR_INGRESO,
     CREAR_PRESUPUESTO,
+    CREAR_GASTO,
     MOSTRAR_INGRESOS_USUARIO,
     MOSTRAR_PRESUPUESTOS_USUARIO,
     BORRAR_INGRESO,
@@ -35,7 +36,8 @@ const AuthState = props => {
         totalPresupuestos: null,
         totalGastos:null,
         ingresosUsuario:null,
-        presupuestosUsuario:null
+        presupuestosUsuario:null,
+        gastosUsuario:null
     }
 
     const [state, dispatch] = useReducer(AuthReducer,initialState)
@@ -166,6 +168,17 @@ const AuthState = props => {
         
     }
 
+    // Crear gasto
+
+    const crearGasto = async(gasto) => {
+        const resp = await clienteAxios.post('/gastos',gasto)
+
+        dispatch({
+            type:CREAR_GASTO,
+            payload: resp.data
+        })
+    }
+
     // Mostrar el total de gastos del usuario
 
     const mostrarGastos = async() => {
@@ -241,6 +254,7 @@ const AuthState = props => {
             totalGastos:state.totalGastos,
             ingresosUsuario: state.ingresosUsuario,
             presupuestosUsuario: state.presupuestosUsuario,
+            gastosUsuario: state.gastosUsuario,
             registrarUsuario,
             iniciarSesion,
             usuarioAutenticado,
@@ -250,6 +264,7 @@ const AuthState = props => {
             mostrarGastos,
             crearIngreso,
             crearPresupuesto,
+            crearGasto,
             mostrarIngresosUsuario,
             borrarIngreso,
             mostrarPresupuestosUsuario,

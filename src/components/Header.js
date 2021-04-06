@@ -107,9 +107,11 @@ export default function Header(props) {
           <p className="text-c-red">Has presupuestado $ {totalIngresos-totalPresupuestos} de más</p> : 
           <p></p>}
           
-          {totalIngresos-totalPresupuestos ===0 ?
-          <p className="text-c-green">¡Felicidades, ahora cada peso tiene un destino claro!</p> : 
-          <p></p>}
+          {!(totalIngresos-totalPresupuestos)  ?
+          <p className="text-c-green">¡Bienvenido, agrega tus ingresos!</p> : <p></p>}
+          { totalIngresos-totalPresupuestos===0 ?
+          <p className="text-c-green">¡Felicidades, ahora cada peso tiene un destino claro!</p>: <p></p>}
+
         </div>
 
        

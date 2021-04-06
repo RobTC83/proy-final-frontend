@@ -9,7 +9,7 @@ export default function Presupuestos(props) {
     useEffect(()=>{
         calcularTotalPresupuestos()
         mostrarPresupuestosUsuario()
-    },[totalPresupuestos,mostrarPresupuestosUsuario])
+    },[presupuestosUsuario])
 
 // State para mostrar/ocultar el formulario de agregar presupuesto
 

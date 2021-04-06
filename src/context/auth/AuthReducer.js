@@ -11,6 +11,7 @@ import {
     TOTAL_PRESUPUESTOS,
     CREAR_INGRESO,
     CREAR_PRESUPUESTO,
+    CREAR_GASTO,
     MOSTRAR_INGRESOS_USUARIO,
     BORRAR_INGRESO,
     MOSTRAR_PRESUPUESTOS_USUARIO,
@@ -67,13 +68,19 @@ export default (state, action) => {
             case CREAR_INGRESO:
                 return {
                     ...state,
-                    usuario: action.payload
+                    ingresosUsuario: action.payload
                 }
             
             case CREAR_PRESUPUESTO:
                 return {
                     ...state,
-                    usuario: action.payload
+                    presupuestosUsuario: action.payload
+                }
+
+            case CREAR_GASTO:
+                return {
+                    ...state,
+                    gastosUsuario: action.payload
                 }
 
             case MOSTRAR_INGRESOS_USUARIO:
