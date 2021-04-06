@@ -1,11 +1,11 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import AuthContext from '../context/auth/AuthContext'
 import { useHistory } from "react-router-dom";
 
 export default function Header(props) {
 
   const authContext = useContext(AuthContext)
-  const {autenticado, cerrarSesion} = authContext;
+  const {autenticado, cerrarSesion,totalPresupuestos, totalIngresos} = authContext;
 
   let history = useHistory()
 
@@ -16,10 +16,32 @@ export default function Header(props) {
 
     }, [])
 
+
     const cerrarUsuario = () => {
       cerrarSesion()
       window.location.reload();
     }
+
+    // const diferencia = ()=> {
+    //    const dif = totalIngresos-totalPresupuestos
+    //    return dif
+    // }
+    // diferencia()
+
+    // const [signoResultado, setSignoResultado] = useState(null)
+
+    // let setSigno = ()=>{
+    //   if (diferencia>0){
+    //     setSignoResultado("positivo")
+    //   }
+    //   if (diferencia=0){
+    //     setSignoResultado("cero")
+    //   }
+    //   else {setSignoResultado("negativo")}
+    // }
+
+    // setSigno()
+    
     
 
     return (
@@ -77,7 +99,17 @@ export default function Header(props) {
           <h1 class="text-3xl font-bold text-gray-900">
             Marzo 2021
           </h1>
-          <p className="font-bold text-c-green">¡Has logrado presupuestar todos tus ingresos!</p>
+          {totalIngresos-totalPresupuestos >0 ? 
+          <p className="text-c-black">Te falta presupuestar $ {totalIngresos-totalPresupuestos}</p>:
+          <p></p>}
+
+          {totalIngresos-totalPresupuestos <0 ? 
+          <p className="text-c-red">Has presupuestado $ {totalIngresos-totalPresupuestos} de más</p> : 
+          <p></p>}
+          
+          {totalIngresos-totalPresupuestos ===0 ?
+          <p className="text-c-green">¡Felicidades, ahora cada peso tiene un destino claro!</p> : 
+          <p></p>}
         </div>
 
        

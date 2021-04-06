@@ -7,13 +7,14 @@ import {
     LOGIN_EXITOSO,
     LOGIN_ERROR,
     CERRAR_SESION,
-    OBTENER_INGRESOS,
-    OBTENER_PRESUPUESTOS,
+    TOTAL_INGRESOS,
+    TOTAL_PRESUPUESTOS,
     CREAR_INGRESO,
     CREAR_PRESUPUESTO,
     MOSTRAR_INGRESOS_USUARIO,
     BORRAR_INGRESO,
-    EDITAR_INGRESO
+    MOSTRAR_PRESUPUESTOS_USUARIO,
+    BORRAR_PRESUPUESTO
 
 } from '../../types/index'
 
@@ -51,13 +52,13 @@ export default (state, action) => {
                     autenticado: true,
                     usuario: action.payload
                 }
-            case OBTENER_INGRESOS:
+            case TOTAL_INGRESOS:
                 return {
                     ...state,
                     totalIngresos: action.payload 
                 }
             
-            case OBTENER_PRESUPUESTOS:
+            case TOTAL_PRESUPUESTOS:
                 return {
                     ...state,
                     totalPresupuestos: action.payload
@@ -83,11 +84,18 @@ export default (state, action) => {
             
              case BORRAR_INGRESO:
                 return {
+                    ...state,
                     ingresosUsuario: action.payload 
                  }
-            case EDITAR_INGRESO:
+            case BORRAR_PRESUPUESTO:
                 return {
-                    ingresosUsuario: action.payload
+                    ...state,
+                    presupuestosUsuario: action.payload
+                }
+            case MOSTRAR_PRESUPUESTOS_USUARIO:
+                return {
+                    ...state,
+                    presupuestosUsuario: action.payload
                 }
             default:
                 return state

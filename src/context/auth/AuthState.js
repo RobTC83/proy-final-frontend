@@ -13,13 +13,14 @@ import {
     LOGIN_EXITOSO,
     LOGIN_ERROR,
     CERRAR_SESION,
-    OBTENER_INGRESOS,
-    OBTENER_PRESUPUESTOS,
+    TOTAL_INGRESOS,
+    TOTAL_PRESUPUESTOS,
     CREAR_INGRESO,
     CREAR_PRESUPUESTO,
     MOSTRAR_INGRESOS_USUARIO,
+    MOSTRAR_PRESUPUESTOS_USUARIO,
     BORRAR_INGRESO,
-    EDITAR_INGRESO
+    BORRAR_PRESUPUESTO,
 } from '../../types/index'
 
 
@@ -33,7 +34,8 @@ const AuthState = props => {
         totalIngresos: null,
         totalPresupuestos: null,
         totalGastos:null,
-        ingresosUsuario:null
+        ingresosUsuario:null,
+        presupuestosUsuario:null
     }
 
     const [state, dispatch] = useReducer(AuthReducer,initialState)
@@ -121,10 +123,10 @@ const AuthState = props => {
 
     // Traer el total de los ingresos del usuario
 
-    const mostrarIngresos = async() => {
+    const calcularTotalIngresos = async() => {
         const resp = await clienteAxios.get('/ingresos/total')
         dispatch({
-            type: OBTENER_INGRESOS,
+            type: TOTAL_INGRESOS,
             payload: resp.data.sumaIngresos
         })
         
@@ -134,18 +136,31 @@ const AuthState = props => {
 
     const mostrarIngresosUsuario = async() => {
         const resp = await clienteAxios.get('/ingresos')
+        
          dispatch({
              type: MOSTRAR_INGRESOS_USUARIO,
              payload: resp.data.ingresos
          })
     }
 
+    // Traer cada uno de los presupuestos del usuario
+
+    const mostrarPresupuestosUsuario = async() => {
+        const resp = await clienteAxios.get('/presupuestos')
+        //console.log("resp presupuestos", resp)
+        dispatch({
+            type: MOSTRAR_PRESUPUESTOS_USUARIO,
+            payload: resp.data.presupuestos
+        })
+    }
     // Traer el total de los presupuestos del usuario
 
-    const mostrarPresupuestos = async() => {
+    const calcularTotalPresupuestos = async() => {
         const resp = await clienteAxios.get('/presupuestos/total')
+        console.log("resp TOTAL presupuestos", resp)
+
         dispatch({
-            type: OBTENER_PRESUPUESTOS,
+            type: TOTAL_PRESUPUESTOS,
             payload:resp.data.sumaPresupuestos
         })
         
@@ -203,6 +218,19 @@ const AuthState = props => {
         })
     }
 
+      // Eliminar un presupuesto
+
+      const borrarPresupuesto = async(id) => {
+        const res = await clienteAxios.delete(`/presupuestos/${id}`)
+        console.log("eliminar presupuesto",res)
+        dispatch({
+            type: BORRAR_PRESUPUESTO,
+            payload: state.presupuestosUsuario
+        })
+    }
+
+    
+
     return (
         <AuthContext.Provider value={{
             token: state.token,
@@ -212,18 +240,22 @@ const AuthState = props => {
             totalPresupuestos: state.totalPresupuestos,
             totalGastos:state.totalGastos,
             ingresosUsuario: state.ingresosUsuario,
+            presupuestosUsuario: state.presupuestosUsuario,
             registrarUsuario,
             iniciarSesion,
             usuarioAutenticado,
             cerrarSesion,
-            mostrarIngresos,
-            mostrarPresupuestos,
+            calcularTotalIngresos,
+            calcularTotalPresupuestos,
             mostrarGastos,
             crearIngreso,
             crearPresupuesto,
             mostrarIngresosUsuario,
             borrarIngreso,
-            editarIngreso
+            mostrarPresupuestosUsuario,
+            borrarPresupuesto,
+            
+            
 
         }}>
             {props.children}

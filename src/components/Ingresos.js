@@ -4,13 +4,13 @@ import AuthContext from '../context/auth/AuthContext'
 
 export default function Ingresos(props) {
 
-  const {mostrarIngresos,totalIngresos,usuario,crearIngreso,ingresosUsuario,mostrarIngresosUsuario,borrarIngreso,editarIngreso} = useContext(AuthContext)
+  const {calcularTotalIngresos,totalIngresos,crearIngreso,ingresosUsuario,mostrarIngresosUsuario,borrarIngreso} = useContext(AuthContext)
 
   useEffect(()=>{
-      mostrarIngresos()
+      calcularTotalIngresos()
       mostrarIngresosUsuario()
       
-  },[usuario,ingresosUsuario])
+  },[ingresosUsuario])
 
  const [buttonState, setButtonState] = useState(false)
  
@@ -20,15 +20,15 @@ export default function Ingresos(props) {
   }
 }
 
-const [editionState, setEditionState] = useState(false)
+// const [editionState, setEditionState] = useState(false)
  
- const estatusEdicion = ()=> {
-  if(editionState === false) {
-      setEditionState(true)
-  } if(editionState=== true){
-      setEditionState(false)
-  }
-}
+//  const estatusEdicion = ()=> {
+//   if(editionState === false) {
+//       setEditionState(true)
+//   } if(editionState=== true){
+//       setEditionState(false)
+//   }
+// }
 
 // State inicial de los campos del formulario
 
@@ -107,60 +107,60 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
 // Desestructurar la info del formulario 
 // const {newIncomeAmount, newIncomeSource, newIncomeDate} = newIncomeItem
 
-const onEditing = e => {
+// const onEditing = e => {
 
-  setIncomeItem({
-    ...incomeItem,
-    [e.target.name]: e.target.value
-  })
-  console.log(incomeItem)
+//   setIncomeItem({
+//     ...incomeItem,
+//     [e.target.name]: e.target.value
+//   })
+//   console.log(incomeItem)
   // setNewIncomeItem({
   //   ...newIncomeItem,
   //   [e.target.name]: e.target.value
   // })
   // console.log(newIncomeItem)
-}
+//}
 
 
-const actualizarIngreso = (id)=>{
-  console.log("esto trae act ingreso",id)
-         id.preventDefault()
+// const actualizarIngreso = (id)=>{
+//   console.log("esto trae act ingreso",id)
+//          id.preventDefault()
     
-        //validar que no haya campos vacíos
-        if(
-          incomeAmount === "" ||
-          incomeSource === "" || 
-          incomeDate === ""
+//         //validar que no haya campos vacíos
+//         if(
+//           incomeAmount === "" ||
+//           incomeSource === "" || 
+//           incomeDate === ""
           
-          ){
-            // if(
-            //   newIncomeAmount === "" ||
-            //   newIncomeSource === "" || 
-            //   newIncomeDate === ""
+//           ){
+//             // if(
+//             //   newIncomeAmount === "" ||
+//             //   newIncomeSource === "" || 
+//             //   newIncomeDate === ""
               
-            //   ){
+//             //   ){
     
-            console.log("Todos los campos son obligatorios")
-            return
-        }
+//             console.log("Todos los campos son obligatorios")
+//             return
+//         }
     
-        // pasarlo al action de la función
-         editarIngreso(id,{
-           incomeAmount,
-           incomeSource,
-           incomeDate
-         })
-        console.log("incomeAmount",incomeAmount)
-         setIncomeItem(
-           {
-            incomeAmount: "",
-            incomeSource: "",
-            incomeDate: ""
-           }
-         )
-        setEditionState(false)
+//         // pasarlo al action de la función
+//          editarIngreso(id,{
+//            incomeAmount,
+//            incomeSource,
+//            incomeDate
+//          })
+//         console.log("incomeAmount",incomeAmount)
+//          setIncomeItem(
+//            {
+//             incomeAmount: "",
+//             incomeSource: "",
+//             incomeDate: ""
+//            }
+//          )
+//         setEditionState(false)
 
-    }
+//    }
     return (
         <div>
             
