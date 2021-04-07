@@ -9,11 +9,10 @@ import AuthContext from '../context/auth/AuthContext'
 
 export default function Gastos() {
 
-    const {presupuestosUsuario,crearGasto,gastosUsuario} = useContext(AuthContext)
+    const {presupuestosUsuario,crearGasto, gastosUsuario} = useContext(AuthContext)
 
-     useEffect(() => {
-         crearGasto()
-     }, [gastosUsuario])
+    //  useEffect(() => {
+    //  }, [])
 
     const [thirdButton, setThirdButton] = useState(false)
 
@@ -118,6 +117,34 @@ const onSubmit = e => {
                                         </div>
                                     </form>
                             }   
+
+                            { thirdButton ? <p></p> :
+                            <div class= "space-y-0">
+                                <div class="px-4 py-2">
+                                
+                                {/* {!gastosUsuario ? (<p>Loading</p>) :
+
+                                gastosUsuario.map((elem,i)=>{
+                                return(
+                                  
+                                    <div className="px-2 py-1 flex justify-between">
+                                      <span key={i}>{elem.expenseConcept}</span> <span className="text-c-green font-bold">{`$ ${elem.expenseAmount}`}</span>
+                                    </div>
+                                    
+                                     
+                                    
+                                    
+
+                                  
+                                  
+                                    )
+                                  })  
+                                } */}
+                               
+                                </div>
+
+                                
+                            </div>}
                         </div>
                     </div>
         </div> 

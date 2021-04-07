@@ -37,7 +37,7 @@ const AuthState = props => {
         totalGastos:null,
         ingresosUsuario:null,
         presupuestosUsuario:null,
-        gastosUsuario:null
+        gastosUsuario:[]
     }
 
     const [state, dispatch] = useReducer(AuthReducer,initialState)
@@ -159,7 +159,7 @@ const AuthState = props => {
 
     const calcularTotalPresupuestos = async() => {
         const resp = await clienteAxios.get('/presupuestos/total')
-        console.log("resp TOTAL presupuestos", resp)
+        // console.log("resp TOTAL presupuestos", resp)
 
         dispatch({
             type: TOTAL_PRESUPUESTOS,
@@ -172,9 +172,9 @@ const AuthState = props => {
 
     const crearGasto = async(gasto) => {
         const resp = await clienteAxios.post('/gastos',gasto)
-
+        console.log("el gasto es",resp)
         dispatch({
-            type:CREAR_GASTO,
+            type: CREAR_GASTO,
             payload: resp.data
         })
     }
