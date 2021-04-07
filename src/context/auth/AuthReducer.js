@@ -13,7 +13,9 @@ import {
     CREAR_PRESUPUESTO,
     CREAR_GASTO,
     MOSTRAR_INGRESOS_USUARIO,
+    MOSTRAR_GASTOS_USUARIO,
     BORRAR_INGRESO,
+    BORRAR_GASTO,
     MOSTRAR_PRESUPUESTOS_USUARIO,
     BORRAR_PRESUPUESTO
 
@@ -82,6 +84,11 @@ export default (state, action) => {
                     ...state,
                     gastosUsuario: action.payload
                 }
+            case MOSTRAR_GASTOS_USUARIO:
+                return {
+                    ...state,
+                    gastosUsuario:action.payload
+                }
 
             case MOSTRAR_INGRESOS_USUARIO:
                 return {
@@ -99,6 +106,11 @@ export default (state, action) => {
                     ...state,
                     presupuestosUsuario: action.payload
                 }
+            case BORRAR_GASTO:
+                return {
+                    ...state,
+                    gastosUsuario: action.payload
+                    }
             case MOSTRAR_PRESUPUESTOS_USUARIO:
                 return {
                     ...state,

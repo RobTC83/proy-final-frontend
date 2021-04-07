@@ -201,7 +201,7 @@ const {incomeAmount, incomeSource, incomeDate} = incomeItem
                                 return(
                                   <>
                                     <div className="px-2 py-1 flex justify-between">
-                                      <span>{elem.incomeSource}</span> <span className="text-c-green font-bold">{`$ ${elem.incomeAmount}`}</span>
+                                      <span key={i}>{elem.incomeSource}</span> <span className="text-c-green font-bold">{`$ ${elem.incomeAmount}`}</span>
                                     </div>
                                     
                                      <button onClick={()=>eliminarIngreso(elem._id)}>Eliminar</button>

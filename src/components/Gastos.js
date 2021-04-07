@@ -9,10 +9,11 @@ import AuthContext from '../context/auth/AuthContext'
 
 export default function Gastos() {
 
-    const {presupuestosUsuario,crearGasto, gastosUsuario} = useContext(AuthContext)
+    const {presupuestosUsuario,crearGasto, gastosUsuario, borrarGasto, mostrarGastosUsuario,totalGastos} = useContext(AuthContext)
 
-    //  useEffect(() => {
-    //  }, [])
+     useEffect(() => {
+         mostrarGastosUsuario()
+     }, [gastosUsuario])
 
     const [thirdButton, setThirdButton] = useState(false)
 
@@ -78,6 +79,11 @@ const onSubmit = e => {
  setThirdButton(false)
     }
 
+        // Eliminar gasto
+
+    const eliminarGasto = (el)=>{
+        borrarGasto(el)
+    }
 
     return (
         <div class="space-y-3 px-4 py-1 max-w-4xl">
@@ -88,7 +94,8 @@ const onSubmit = e => {
                     <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
 
                         <div class="px-4 py-3 text-gray-900 font-bold bg-c-yellow hover:bg-c-peach">
-                            <p>Tus gastos<span className="text-c-yellow bg-c-yellow hover:bg-c-peach">_________</span><span className="text-c-red bg-white font-bold">$ 3,430</span><span className="text-white bg-white">___</span><span className="bg-white">tienes</span><span className="text-white bg-white">___</span><span className="text-c-green bg-white font-bold">$ 3,000</span></p>
+                            <p>{totalGastos}</p>
+                            <p>Tus gastos<span className="text-c-red bg-white font-bold">{totalGastos}</span><span className="text-white bg-white">___</span><span className="bg-white">tienes</span><span className="text-white bg-white">___</span><span className="text-c-green bg-white font-bold">$ 3,000</span></p>
                         </div>
                             
                         <div>
@@ -122,14 +129,23 @@ const onSubmit = e => {
                             <div class= "space-y-0">
                                 <div class="px-4 py-2">
                                 
-                                {/* {!gastosUsuario ? (<p>Loading</p>) :
+                              
 
-                                gastosUsuario.map((elem,i)=>{
-                                return(
-                                  
+                                {!gastosUsuario ? (<p>Loading</p>) :
+
+                                    gastosUsuario.map((elem)=>{
+                                    return(
                                     <div className="px-2 py-1 flex justify-between">
-                                      <span key={i}>{elem.expenseConcept}</span> <span className="text-c-green font-bold">{`$ ${elem.expenseAmount}`}</span>
-                                    </div>
+                                        <div>
+                                            <span>{elem.expenseConcept}</span> <span className="text-c-blue font-bold">{`$ ${elem.expenseAmount}`}</span> 
+                                        </div>
+                                        <button onClick={()=>eliminarGasto(elem._id)}>Eliminar</button>
+                                    </div>  )
+                                    })  
+                                    }
+                                  
+                                
+                                   
                                     
                                      
                                     
@@ -137,9 +153,9 @@ const onSubmit = e => {
 
                                   
                                   
-                                    )
-                                  })  
-                                } */}
+                                    
+                                  
+                                
                                
                                 </div>
 

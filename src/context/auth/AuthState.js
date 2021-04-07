@@ -20,8 +20,10 @@ import {
     CREAR_GASTO,
     MOSTRAR_INGRESOS_USUARIO,
     MOSTRAR_PRESUPUESTOS_USUARIO,
+    MOSTRAR_GASTOS_USUARIO,
     BORRAR_INGRESO,
     BORRAR_PRESUPUESTO,
+    BORRAR_GASTO
 } from '../../types/index'
 
 
@@ -37,7 +39,7 @@ const AuthState = props => {
         totalGastos:null,
         ingresosUsuario:null,
         presupuestosUsuario:null,
-        gastosUsuario:[]
+        gastosUsuario:null
     }
 
     const [state, dispatch] = useReducer(AuthReducer,initialState)
@@ -138,7 +140,7 @@ const AuthState = props => {
 
     const mostrarIngresosUsuario = async() => {
         const resp = await clienteAxios.get('/ingresos')
-        
+        // console.log("mostrarIngresos",resp)
          dispatch({
              type: MOSTRAR_INGRESOS_USUARIO,
              payload: resp.data.ingresos
@@ -153,6 +155,16 @@ const AuthState = props => {
         dispatch({
             type: MOSTRAR_PRESUPUESTOS_USUARIO,
             payload: resp.data.presupuestos
+        })
+    }
+
+    // Traer cada uno de los gastos del usuario
+
+    const mostrarGastosUsuario = async() => {
+        const resp = await clienteAxios.get('/gastos')
+        dispatch({
+            type: MOSTRAR_GASTOS_USUARIO,
+            payload: resp.data
         })
     }
     // Traer el total de los presupuestos del usuario
@@ -172,27 +184,42 @@ const AuthState = props => {
 
     const crearGasto = async(gasto) => {
         const resp = await clienteAxios.post('/gastos',gasto)
-        console.log("el gasto es",resp)
+        // console.log("el gasto es",resp)
         dispatch({
             type: CREAR_GASTO,
-            payload: resp.data
+            payload: resp.data.sumaGastos
         })
     }
 
     // Mostrar el total de gastos del usuario
 
     const mostrarGastos = async() => {
-        const resp = await clienteAxios.get('/')
+        const resp = await clienteAxios.get('/gastos/total')
+        console.log("suma gastos",resp)
+        // dispatch({
+        //     type: CREAR_GASTO,
+        //     payload: resp.data.sumaGastos
+        // })
     }
 
+    // Eliminar un gasto
+
+    const borrarGasto = async(gas) => {
+        const res = await clienteAxios.delete(`/gastos/${gas}`)
+        console.log("eliminarGasto",res)
+        dispatch({
+            type: BORRAR_GASTO,
+            payload: state.gastosUsuario
+        })
+    }
     // Crear un nuevo ingreso
 
     const crearIngreso = async(ingreso) => {
         const resp = await clienteAxios.post('/ingresos',ingreso)
-
+         console.log("resp ingresos",resp)
          dispatch({
             type: CREAR_INGRESO,
-            payload: resp.data
+            payload: resp.data.ingresos
 
          })
     }
@@ -227,7 +254,7 @@ const AuthState = props => {
 
         dispatch({
             type:CREAR_PRESUPUESTO,
-            payload: resp.data
+            payload: resp.data.presupuestos
         })
     }
 
@@ -267,7 +294,9 @@ const AuthState = props => {
             crearGasto,
             mostrarIngresosUsuario,
             borrarIngreso,
+            borrarGasto,
             mostrarPresupuestosUsuario,
+            mostrarGastosUsuario,
             borrarPresupuesto,
             
             
