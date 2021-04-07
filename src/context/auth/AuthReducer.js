@@ -9,6 +9,7 @@ import {
     CERRAR_SESION,
     TOTAL_INGRESOS,
     TOTAL_PRESUPUESTOS,
+    TOTAL_GASTOS,
     CREAR_INGRESO,
     CREAR_PRESUPUESTO,
     CREAR_GASTO,
@@ -66,7 +67,13 @@ export default (state, action) => {
                     ...state,
                     totalPresupuestos: action.payload
                 }
-            
+
+            case TOTAL_GASTOS:
+                return {
+                    ...state,
+                    totalGastos: action.payload
+                }
+        
             case CREAR_INGRESO:
                 return {
                     ...state,

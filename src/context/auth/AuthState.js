@@ -15,6 +15,7 @@ import {
     CERRAR_SESION,
     TOTAL_INGRESOS,
     TOTAL_PRESUPUESTOS,
+    TOTAL_GASTOS,
     CREAR_INGRESO,
     CREAR_PRESUPUESTO,
     CREAR_GASTO,
@@ -191,16 +192,18 @@ const AuthState = props => {
         })
     }
 
-    // Mostrar el total de gastos del usuario
+// Traer el total de los ingresos del usuario
 
-    const mostrarGastos = async() => {
-        const resp = await clienteAxios.get('/gastos/total')
-        console.log("suma gastos",resp)
-        // dispatch({
-        //     type: CREAR_GASTO,
-        //     payload: resp.data.sumaGastos
-        // })
-    }
+const calcularTotalGastos = async() => {
+    const resp = await clienteAxios.get('/gastos/total')
+    // console.log("suma gastos",resp)
+    dispatch({
+        type: TOTAL_GASTOS,
+        payload: resp.data.sumaGastos
+    })
+    
+}
+    
 
     // Eliminar un gasto
 
@@ -288,7 +291,7 @@ const AuthState = props => {
             cerrarSesion,
             calcularTotalIngresos,
             calcularTotalPresupuestos,
-            mostrarGastos,
+            calcularTotalGastos,
             crearIngreso,
             crearPresupuesto,
             crearGasto,

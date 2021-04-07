@@ -1,5 +1,9 @@
 import { Doughnut } from "react-chartjs-2";
 import { chartColors } from "../colors.js";
+import React,{useContext,useEffect} from 'react'
+
+import AuthContext from '../context/auth/AuthContext'
+
 import "../App.css";
 
 
@@ -7,6 +11,11 @@ import "../App.css";
 
 export default function Graficas() {
     
+  const {gastosUsuario, mostrarGastosUsuario} = useContext(AuthContext)
+
+  useEffect(() => {
+      mostrarGastosUsuario()
+  }, [gastosUsuario])
 
     const options = {
         legend: {
@@ -27,7 +36,7 @@ export default function Graficas() {
         labels: ["Renta", "Despensa", "Transporte", "Ahorro"],
         datasets: [
           {
-            data: [2380, 700, 250, 100],
+            data: [90, 700, 250, 100],
             backgroundColor: chartColors,
             hoverBackgroundColor: chartColors
           }

@@ -9,10 +9,11 @@ import AuthContext from '../context/auth/AuthContext'
 
 export default function Gastos() {
 
-    const {presupuestosUsuario,crearGasto, gastosUsuario, borrarGasto, mostrarGastosUsuario,totalGastos} = useContext(AuthContext)
+    const {presupuestosUsuario,crearGasto, gastosUsuario, borrarGasto, mostrarGastosUsuario,calcularTotalGastos, totalGastos,totalIngresos, totalPresupuestos} = useContext(AuthContext)
 
      useEffect(() => {
          mostrarGastosUsuario()
+         calcularTotalGastos()
      }, [gastosUsuario])
 
     const [thirdButton, setThirdButton] = useState(false)
@@ -94,8 +95,9 @@ const onSubmit = e => {
                     <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
 
                         <div class="px-4 py-3 text-gray-900 font-bold bg-c-yellow hover:bg-c-peach">
-                            <p>{totalGastos}</p>
-                            <p>Tus gastos<span className="text-c-red bg-white font-bold">{totalGastos}</span><span className="text-white bg-white">___</span><span className="bg-white">tienes</span><span className="text-white bg-white">___</span><span className="text-c-green bg-white font-bold">$ 3,000</span></p>
+                            <span >Has gastado: </span><span className="text-c-red bg-white font-bold">$ {totalGastos}</span>
+                            
+                            <p>Aún tienes presupuestados <span className="text-c-green bg-white font-bold">${totalPresupuestos-totalGastos}</span></p>
                         </div>
                             
                         <div>
