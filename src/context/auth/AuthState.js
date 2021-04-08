@@ -35,12 +35,12 @@ const AuthState = props => {
         token: localStorage.getItem('token'),
         autenticado: null,
         usuario: [], // info del usuario
-        totalIngresos: null,
-        totalPresupuestos: null,
-        totalGastos:null,
-        ingresosUsuario:null,
-        presupuestosUsuario:null,
-        gastosUsuario:null
+        totalIngresos: 0,
+        totalPresupuestos: 0,
+        totalGastos:0,
+        ingresosUsuario:"",
+        presupuestosUsuario:"",
+        gastosUsuario:""
     }
 
     const [state, dispatch] = useReducer(AuthReducer,initialState)
@@ -78,7 +78,7 @@ const AuthState = props => {
         try {                       
             const respuesta = await clienteAxios.get('/auth')
 
-            console.log("Respuesta:", respuesta)
+            // console.log("Respuesta:", respuesta)
 
             // YA TENGO LOS DATOS, AHORA QUÉ? 
             // TOCA MODIFICAR EL ESTADO GLOBAL
@@ -272,6 +272,12 @@ const calcularTotalGastos = async() => {
         })
     }
 
+    const editarUsuario = async(id) => {
+        const res = await clienteAxios.post(`/usuarios/editar/${id}`)
+        console.log("editar usuario:", res)
+
+    }
+
     
 
     return (
@@ -301,6 +307,7 @@ const calcularTotalGastos = async() => {
             mostrarPresupuestosUsuario,
             mostrarGastosUsuario,
             borrarPresupuesto,
+            editarUsuario
             
             
 

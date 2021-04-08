@@ -1,8 +1,5 @@
 import { Doughnut } from "react-chartjs-2";
 import { chartColors } from "../colors.js";
-import React,{useContext,useEffect} from 'react'
-
-import AuthContext from '../context/auth/AuthContext'
 
 import "../App.css";
 
@@ -11,11 +8,7 @@ import "../App.css";
 
 export default function Graficas() {
     
-  const {gastosUsuario, mostrarGastosUsuario} = useContext(AuthContext)
-
-  useEffect(() => {
-      mostrarGastosUsuario()
-  }, [gastosUsuario])
+  
 
     const options = {
         legend: {

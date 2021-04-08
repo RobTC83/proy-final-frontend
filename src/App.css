@@ -1,3 +1,8 @@
+.marco-completo{
+  display:flex;
+  flex-direction:column;
+}
+
 .columna-doble {
   display:flex;
   flex-direction:row;

@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect} from 'react'
 import AuthContext from '../context/auth/AuthContext'
 import { useHistory } from "react-router-dom";
 
 export default function Header(props) {
 
   const authContext = useContext(AuthContext)
-  const {autenticado, cerrarSesion,totalPresupuestos, totalIngresos} = authContext;
+  const {autenticado, cerrarSesion} = authContext;
 
   let history = useHistory()
 
@@ -22,25 +22,6 @@ export default function Header(props) {
       window.location.reload();
     }
 
-    // const diferencia = ()=> {
-    //    const dif = totalIngresos-totalPresupuestos
-    //    return dif
-    // }
-    // diferencia()
-
-    // const [signoResultado, setSignoResultado] = useState(null)
-
-    // let setSigno = ()=>{
-    //   if (diferencia>0){
-    //     setSignoResultado("positivo")
-    //   }
-    //   if (diferencia=0){
-    //     setSignoResultado("cero")
-    //   }
-    //   else {setSignoResultado("negativo")}
-    // }
-
-    // setSigno()
     
     
 
@@ -58,8 +39,8 @@ export default function Header(props) {
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-              <a href="/" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Editar perfil</a>
+              
+              
 
               <button onClick={ () => cerrarUsuario() } class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Cerrar sesión</button>
 
@@ -99,6 +80,7 @@ export default function Header(props) {
           <h1 class="text-3xl font-bold text-gray-900">
             Marzo 2021
           </h1>
+          {/*
           {totalIngresos-totalPresupuestos >0 ? 
           <p className="text-c-black">Te falta presupuestar $ {totalIngresos-totalPresupuestos}</p>:
           <p></p>}
@@ -107,10 +89,9 @@ export default function Header(props) {
           <p className="text-c-red">Has presupuestado $ {totalIngresos-totalPresupuestos} de más</p> : 
           <p></p>}
           
-          {!(totalIngresos-totalPresupuestos)  ?
+           {!(totalIngresos-totalPresupuestos)  ?
           <p className="text-c-green">¡Bienvenido, agrega tus ingresos!</p> : <p></p>}
-          { totalIngresos-totalPresupuestos===0 ?
-          <p className="text-c-green">¡Felicidades, ahora cada peso tiene un destino claro!</p>: <p></p>}
+           */}
 
         </div>
 

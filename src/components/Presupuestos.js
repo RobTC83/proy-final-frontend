@@ -4,10 +4,9 @@ import AuthContext from '../context/auth/AuthContext'
 
 export default function Presupuestos(props) {
 
-    const {calcularTotalPresupuestos, totalPresupuestos, crearPresupuesto, mostrarPresupuestosUsuario,presupuestosUsuario,borrarPresupuesto} = useContext(AuthContext)
+    const {crearPresupuesto, mostrarPresupuestosUsuario,presupuestosUsuario,borrarPresupuesto} = useContext(AuthContext)
 
     useEffect(()=>{
-        calcularTotalPresupuestos()
         mostrarPresupuestosUsuario()
     },[presupuestosUsuario])
 
@@ -71,6 +70,7 @@ if(
 
 
     setSecondButtonState(false)
+
 }
 
 // Eliminar presupuesto
@@ -93,7 +93,7 @@ const eliminarPresupuesto = (el)=>{
                         <div class="px-4 py-3 text-gray-900 font-bold bg-c-yellow hover:bg-c-peach">
                             <div className="flex justify-between">
                                 <p>Tus Presupuestos</p> 
-                                <span className="text-c-blue bg-white font-bold">Total: ${totalPresupuestos}</span>
+                                {/* <span className="text-c-blue bg-white font-bold">Total: ${totalPresupuestos}</span> */}
                             </div>
                         </div>
 
@@ -101,9 +101,9 @@ const eliminarPresupuesto = (el)=>{
                                     <form  className="space-y-1">
                                         <label className="">  $   </label>
                                         <input  className="h-8 w-8/12" name="budgetAmount"
-                                        onChange={onChange} value={budgetAmount} type="number" min="0" /><br/>
+                                        onChange={onChange} value={budgetAmount} type="number" min="0" placeholder="Monto" /><br/>
                                         <input  name="budgetConcept"
-                                        onChange={onChange} value={budgetConcept} className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto a presupuestar"/><br/>
+                                        onChange={onChange} value={budgetConcept} className="h-8 w-9/12 pl-7 pr-12 sm:text-sm  border border-gray-600" placeholder="Concepto:renta,servicios,etc."/><br/>
                                         <div className="flex justify-start mx-8 py-2 ">
                                             <button onClick={onSubmit} type="submit" className="border-gray-700 bg-gray-300 text-gray-700 h-8 w-9/12">Registrar presupuesto</button>
                                         </div>
@@ -114,9 +114,9 @@ const eliminarPresupuesto = (el)=>{
                                 <div class="px-4 py-2">
                                 {!presupuestosUsuario ? (<p>Loading</p>) :
 
-                                presupuestosUsuario.map((elem)=>{
+                                presupuestosUsuario.map((elem,i)=>{
                                 return(
-                                  <div className="px-2 py-1 flex justify-between">
+                                  <div className="px-2 py-1 flex justify-between" key={i}>
                                     <div>
                                         <span>{elem.budgetConcept}</span> <span className="text-c-blue font-bold">{`$ ${elem.budgetAmount}`}</span> 
                                     </div>

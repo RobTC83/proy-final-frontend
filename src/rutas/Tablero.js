@@ -4,6 +4,7 @@ import Ingresos from '../components/Ingresos'
 import Graficas from '../components/Graficas'
 import Gastos from '../components/Gastos'
 import Presupuestos from '../components/Presupuestos'
+import EditarPerfil from '../rutas/EditarPerfil'
 
 
 export default function Tablero() {
@@ -11,6 +12,11 @@ export default function Tablero() {
     return (
 
     <>
+    <div className="marco-completo">
+        
+        <EditarPerfil/>
+          
+
         <div className="division-tablero">
               <div className="columna-tablero">
                 <div className="filas">
@@ -24,6 +30,7 @@ export default function Tablero() {
                       <Graficas/>
                   </div>
               </div>
+        </div>
       </div>
 
       </>
